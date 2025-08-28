@@ -67,6 +67,30 @@ mv prisma/schema.prisma prisma/schema.postgresql.prisma
 mv prisma/schema.sqlite.prisma prisma/schema.prisma
 ```
 
+## 🚨 Quick Schema Switching Reference
+
+### For Production (Vercel):
+```bash
+# Switch to PostgreSQL
+mv prisma/schema.prisma prisma/schema.sqlite.prisma
+mv prisma/schema.postgresql.prisma prisma/schema.prisma
+
+# Commit and push
+git add .
+git commit -m "Switch to PostgreSQL for production"
+git push origin main
+```
+
+### For Local Development:
+```bash
+# Switch back to SQLite
+mv prisma/schema.prisma prisma/schema.postgresql.prisma
+mv prisma/schema.sqlite.prisma prisma/schema.prisma
+
+# Regenerate Prisma Client
+npx prisma generate
+```
+
 ## 🛠️ Troubleshooting
 
 ### Build Errors
