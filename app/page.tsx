@@ -84,7 +84,7 @@ export default async function DashboardPage() {
         {/* Today's Matches */}
         <Card>
           <CardHeader>
-            <CardTitle>Today's Matches</CardTitle>
+            <CardTitle>Today&apos;s Matches</CardTitle>
             <CardDescription>
               {todayGames.length} game{todayGames.length !== 1 ? 's' : ''} played today
             </CardDescription>
