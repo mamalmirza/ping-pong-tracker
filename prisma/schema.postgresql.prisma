@@ -15,16 +15,9 @@ model Player {
   name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  // Games as player 1
   gamesAsPlayer1 Game[] @relation("Player1Games")
-  
-  // Games as player 2
   gamesAsPlayer2 Game[] @relation("Player2Games")
-
-  // Games won
   gamesWon Game[] @relation("WinnerGames")
-
   @@map("players")
 }
 
@@ -38,11 +31,8 @@ model Game {
   playedAt    DateTime @default(now())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  // Relations
   player1 Player @relation("Player1Games", fields: [player1Id], references: [id])
   player2 Player @relation("Player2Games", fields: [player2Id], references: [id])
   winner  Player? @relation("WinnerGames", fields: [winnerId], references: [id])
-
   @@map("games")
 }
