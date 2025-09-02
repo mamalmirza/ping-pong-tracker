@@ -87,7 +87,7 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have admin access? Contact your administrator.
+            Don&apos;t have admin access? Contact your administrator.
           </p>
         </div>
       </div>
