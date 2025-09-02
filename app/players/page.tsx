@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import { PlayerForm } from '@/components/player-form'
 import { PlayerList } from '@/components/player-list'
 import { ResetDatabase } from '@/components/reset-database'
+import { requireAuth } from '@/lib/auth'
 
 async function getPlayersData() {
   const players = await prisma.player.findMany({
@@ -36,6 +37,7 @@ async function getPlayersData() {
 }
 
 export default async function PlayersPage() {
+  await requireAuth()
   const { players } = await getPlayersData()
 
   return (

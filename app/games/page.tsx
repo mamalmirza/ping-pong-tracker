@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import { format } from 'date-fns'
 import { GameForm } from '@/components/game-form'
 import { GameHistory } from '@/components/game-history'
+import { requireAuth } from '@/lib/auth'
 
 async function getGamesData() {
   const [games, players] = await Promise.all([
@@ -27,6 +28,7 @@ async function getGamesData() {
 }
 
 export default async function GamesPage() {
+  await requireAuth()
   const { games, players } = await getGamesData()
 
   return (

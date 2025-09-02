@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { prisma } from '@/lib/db'
 import { format } from 'date-fns'
 import Link from 'next/link'
+import { isAuthenticated } from '@/lib/auth'
 
 async function getDashboardData() {
   const today = new Date()
@@ -72,6 +73,7 @@ async function getDashboardData() {
 
 export default async function DashboardPage() {
   const { todayGames, recentGames, playerStats } = await getDashboardData()
+  const authenticated = await isAuthenticated()
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -118,11 +120,13 @@ export default async function DashboardPage() {
                 ))}
               </div>
             )}
-            <div className="mt-4">
-              <Link href="/games" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View all games →
-              </Link>
-            </div>
+            {authenticated && (
+              <div className="mt-4">
+                <Link href="/games" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  View all games →
+                </Link>
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -185,11 +189,13 @@ export default async function DashboardPage() {
                 </div>
               ))}
             </div>
-            <div className="mt-4">
-              <Link href="/games" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View all games →
-              </Link>
-            </div>
+            {authenticated && (
+              <div className="mt-4">
+                <Link href="/games" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  View all games →
+                </Link>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
